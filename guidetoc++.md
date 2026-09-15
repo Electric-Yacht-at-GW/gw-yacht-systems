@@ -25,6 +25,26 @@ Microcontrollers do not have operating systems. Therefore, many standard C++ lib
 
 ### The Header (`.hpp`) -> "The Menu"
 Declares *what* exists. This is where you define classes, structs, and function signatures.
+Public vs. Private (Encapsulation)
+
+In C++ classes, we split our code into `public` and `private` sections. This concept is called **encapsulation**, and it acts like a protective shield around your hardware data.
+
+### `public` (The Buttons)
+Anything listed under `public` can be seen, called, and modified by the rest of the program (like `main.cpp`). 
+* **What goes here:** The functions we *want* the rest of the boat to use (e.g., `init()`, `read_raw()`, `process()`).
+* **Analogy:** The buttons on the front of a microwave. The user is allowed to press "Start" or "Defrost".
+
+### `private` (The Internal Wires)
+Anything listed under `private` can **only** be seen and modified by the class's own `.cpp` file. If someone writing `main.cpp` tries to touch a private variable, the compiler will throw a red error and refuse to build.
+* **What goes here:** Internal hardware buffers, I2C addresses, and state flags (e.g., `uint8_t raw_buffer_[8]`, `bool is_initialized_`). 
+* **Naming Convention:** We usually put an underscore at the end of private variables (like `buffer_`) so we can easily spot them in the `.cpp` file.
+* **Analogy:** The high-voltage wiring inside the microwave. You do not want the user reaching in there, because they might accidentally break the machine.
+
+### Why do we do this?
+Imagine you have a `raw_buffer_` that holds incoming bytes from a sensitive IMU. 
+
+* If `raw_buffer_` was **public**, a teammate writing `main.cpp` could accidentally type `my_imu.raw_buffer_[0] = 0;` and quietly overwrite the real sensor data. Tracking down that bug would take hours.
+* By making it **private**, we completely lock `main.cpp` out of the raw memory. We force `main` to use our public `process()` function, which hands them a safe, clean copy of the data. It makes the firmware "idiot-proof."
 ```cpp
 #pragma once         // Always put this at the top to prevent double-inclusions
 #include <cstdint>
@@ -36,7 +56,6 @@ private:
     uint8_t id_;     // Naming convention: trailing underscore for private variables
 };
 ```
-
 ### The Source (`.cpp`) -> "The Recipe"
 Defines *how* it works. This is where you write the actual logic.
 ```cpp
