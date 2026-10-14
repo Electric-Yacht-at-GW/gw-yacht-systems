@@ -1,3 +1,4 @@
+#pragma once
 #include <cstdint>
 
 
@@ -19,7 +20,7 @@ public:
 
 private:
   uint8_t i2c_address = ; // Sensors address - Put after the = once known
-  bool is_unitialized = false; // Will turn true after init() gets called
+  bool is_initialized_ = false; // Will turn true after init() gets called
   uint8_t raw_buffer_[6]; // Holds X, Y, Z bytes (2 each)
 }
 
