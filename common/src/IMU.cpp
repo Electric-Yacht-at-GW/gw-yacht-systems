@@ -2,7 +2,7 @@
 
 // Turns the sensor on and checks it
 bool ImuSensor::init() {
-  is_initialized = true;
+  is_initialized_ = true;
   return true;
 }
 
@@ -11,7 +11,7 @@ bool ImuSensor::init() {
 // Gets the raw bytes from the sensor
 bool ImuSensor::read_raw() {
   //Don't read if sensor was never started
-  if (!is_initialized) {
+  if (!is_initialized_) {
     return false;
   }
   return true;
@@ -28,7 +28,7 @@ ImuData ImuSensor::process() {
   output.timestamp_ms = 0;
   
   //Don't process if the sensor never started
-  if (!is_initialized) {
+  if (!is_initialized_) {
     return output;
   }
 
