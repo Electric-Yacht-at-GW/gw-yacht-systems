@@ -1,5 +1,13 @@
 #include "IMU.hpp"
 
+//CHIP_ID = 0x00
+//OPR_MODE = 0x3D
+//PWR_MODE = 0x3E
+//UNIT_SEL = 0x3B
+//CALIB_STAT = 0x35
+//EULER_START = 0x1A
+//LINEAR_ACCEL_START = 0x28
+
 // Turns the sensor on and checks it
 bool ImuSensor::init() {
   is_initialized_ = true;
