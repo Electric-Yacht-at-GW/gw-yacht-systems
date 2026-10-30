@@ -9,8 +9,6 @@ A core challenge of this project is safely bridging low-voltage logic with the b
 *   **Custom PCB Integration:** Designed schematics to drive 12V analog meters and OLED dashboard UI elements directly from the STM32 Nucleo using IRLZ44N logic-level MOSFETs.
 *   **Telemetry Routing:** Hardware integration of SN65HVD230 CAN transceivers to read motor controller data, alongside I2C sensor arrays (IMU/GPS) for real-time spatial data. 
 
-*(Include the image_077f95.png image here in the final markdown)*
-
 ## Software Architecture
 The firmware is built with a modular, sensor-agnostic C++ architecture to allow the telemetry package to be easily transferred between different boat hulls.
 *   **Object-Oriented Sensor Polling:** Core logic abstracted into `common/` modules, allowing seamless swapping of I2C/UART devices (GPS, IMU) without rewriting the main execution loop.
