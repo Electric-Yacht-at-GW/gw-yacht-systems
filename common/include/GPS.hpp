@@ -1,7 +1,8 @@
-//gps sensor
-#include ...
+#pragma once
+#include <cstdint>
 #define GPS_DEFAULT_BAUD 9600
-#define NMEA length of 82
+#define NMEA_MAX_LENGTH 82
+
 struct GPS_Time {
 int hours
 int minutes
