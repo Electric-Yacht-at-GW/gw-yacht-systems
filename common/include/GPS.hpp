@@ -1,7 +1,9 @@
 #pragma once
+#include <Arduino.h>
 #include <cstdint>
+
 #define GPS_DEFAULT_BAUD 9600
-#define NMEA_MAX_LENGTH 82
+#define GPS_MAX_AGE_MS 2000
 
 struct GPS_Time {
   int hours;
@@ -24,6 +26,7 @@ struct GPS_Data {
 };
 
 
-bool GPS_Init();
+bool GPS_Init(HardwareSerial& port);
+bool GPS_Update();
 bool GPS_ProcessChar(char c);
 bool GPS_GetLatestData(GPS_Data* out);
