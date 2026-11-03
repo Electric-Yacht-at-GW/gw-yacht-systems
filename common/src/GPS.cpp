@@ -1,4 +1,6 @@
-#include "GPS.h"
+#include "GPS.hpp"
+#include <cstdlib>
+#include <cstring>
 
 //buffer the NMEA string
 //take the max length of a string and add one to keep like feeding through
