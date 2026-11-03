@@ -1,6 +1,41 @@
 #include "GPS.hpp"
-#include <cstdlib>
-#include <cstring>
+#include <TinyGPSPlus.h>
+
+static TinyGPSPlus gps;
+static HardwareSerial* gps_port = nullptr;
+
+// Start the GPS
+
+
+
+// Feed a character to the library,  then return true when a valid sentence was parsed
+
+
+
+
+// Read everything waiting on the serial port and send it to the parser
+
+
+
+
+// Copy the latest values out of the library into our struct
+
+
+
+
+// A fix only counts if the position is valid AND was updated recently
+
+
+
+
+
+
+
+
+
+
+
+
 
 //buffer the NMEA string
 //take the max length of a string and add one to keep like feeding through
