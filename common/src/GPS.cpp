@@ -6,17 +6,33 @@ static HardwareSerial* gps_port = nullptr;
 
 // Start the GPS
 bool GPS_Init (HardwareSerial& port) {
-  
+  gps_port = &port;
+  port.begin(GPS_DEFAULT_BAUD);
+  return true:
 }
 
 
 // Feed a character to the library,  then return true when a valid sentence was parsed
-
-
+bool GPA_ProcessChar(char c) {
+  return gps.encode(c);
+}
 
 
 // Read everything waiting on the serial port and send it to the parser
+bool GPS_Update() {
+  if (gps_port == nullptr) {
+    return false;
+  }
 
+  bool got_sentence = false;
+  while (gps_port->available() > 0) {
+    if (GPS_ProcessChar((char)gps_port->read())) {
+      got_sentence = true;
+    }
+  }
+
+  return got_sentence;
+}
 
 
 
