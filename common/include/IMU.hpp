@@ -44,6 +44,7 @@ private:
   bool is_initialized_ = false; // Will turn true after init() gets called
   bool has_new_data_ = false; // Will turn true after a successful read_raw()
   uint8_t orientation_buffer_[6] = {0}; // yaw, roll, pitch bytes (low byte first)
-  uint8_t acceleration_buffer_[6] // X, Y, Z linear acceleration bytes (low byte first)
+  uint8_t acceleration_buffer_[6] = {0}; // X, Y, Z linear acceleration bytes (low byte first)
   uint8_t calibration_status_ = 0; // Stores last calibration reading
+  uint32_t last_read_ms_ = 0;
 };
