@@ -3,7 +3,7 @@
 #include <cstdint>
 
 #define GPS_DEFAULT_BAUD 9600
-#define GPS_MAX_AGE_MS 2000
+#define GPS_MAX_AGE_MS 2000 // Time before treated as no fix to satellite
 
 struct GPS_Time {
   int hours;
@@ -13,10 +13,10 @@ struct GPS_Time {
 };
 
 struct GPS_Data {
-  double latitude;
-  double longitude;
-  float altitude_meters;
-  float speed_knots;
+  double latitude; // Positive = North / Negative = South
+  double longitude; // Positive = East / Negative = West
+  float altitude_meters; // Above sea level
+  float speed_knots; // 
   float course_degrees;
   
   int satellites_used;
